@@ -1,0 +1,46 @@
+{% extends 'test_app1/base.html' %}
+{% load static %}
+
+{% block css %}
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+{%endblock%}
+
+
+{%  block content_1  %}
+    <div class="container">
+    <div class="card-header">
+        <h3 class="text-center font-weight-light my-4">Наши питомцы</h3>
+      </div>
+        <div class="row">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    {% for animal in animals %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#">
+                                <img class="card-img-top"
+                                     src="{{ animal.animal_image.url }}"
+                                     alt="">
+                            </a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">{{ animal.name }}</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            <div class="container">
+             <div class="row">
+                <div class="col text-center">
+                 <button class="btn btn-primary" onclick="location.href='{% url 'test_app1:index_form' %}';">Оставить обратную связь</button>
+              </div>
+             </div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
